@@ -9,12 +9,12 @@ const AddMeals = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const movie = { name, duration, picture };
+        const meals = { name, duration, picture };
         console.log(meals);
 
         axios.post('http://localhost:4000/api/meals', meals)
             .then((res) => { console.log(res.data) })
-            .catch();
+            .catch((err) => console.error(err));
     }
 
     return (
@@ -33,7 +33,7 @@ const AddMeals = () => {
                     <label>Add Meal Duration: </label>
                     <input type="text"
                         className="form-control"
-                        value={year}
+                        value={duration}
                         onChange={(e) => { setDuration(e.target.value) }}
                     />
                 </div>
@@ -41,7 +41,7 @@ const AddMeals = () => {
                     <label>Add Meal Picture: </label>
                     <input type="text"
                         className="form-control"
-                        value={poster}
+                        value={picture}
                         onChange={(e) => { setPicture(e.target.value) }}
                     />
                 </div>

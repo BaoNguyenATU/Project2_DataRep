@@ -14,9 +14,9 @@ const EditMeals = () => {
         axios.get('http://localhost:4000/api/movie/' + id)
             .then((res) => {
                 console.log("success " + res.data);
-                setTitle(res.data.name);
-                setYear(res.data.duration);
-                setPoster(res.data.picture);
+                setName(res.data.name);
+                setDuration(res.data.duration);
+                setPicture(res.data.picture);
             })
             .catch((err) => { console.log(err) });
     }, [id]);

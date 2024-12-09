@@ -10,6 +10,10 @@ import NavigationBar from './components/NavigationBar';
 /**Importing pages*/
 import ContactPage from './components/ContactPage';
 import AddMeals from './components/AddMeals';
+import Footer from './components/Footer';
+import MainPageM from './components/MainPage';
+import MainPage from './components/MainPage';
+import EditMeals from './components/EditMeals';
 
 
 function App() {
@@ -17,10 +21,10 @@ function App() {
     <Router>
       <NavigationBar />
       <Routes>
-        <Route path="/" element={<Content />} />
-        <Route path="/read" element={<Read />} />
-        <Route path="/create" element={<Create />} />
-        <Route path='/edit/:id' element={<Edit />} />
+        <Route path="/" element={<ContactPage />} />
+        <Route path="/read" element={<MainPage />} />
+        <Route path="/create" element={<AddMeals />} />
+        <Route path='/edit/:id' element={<EditMeals />} />
       </Routes>
       <Footer />
     </Router>
