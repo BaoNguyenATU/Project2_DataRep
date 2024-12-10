@@ -20,15 +20,23 @@ app.use(bodyParser.json());
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://Admin:Admin@cluster0.s3fkf.mongodb.net/DB11');
 
-const movieSchema = new mongoose.Schema({
-  title:String,
-  year:String,
-  poster:String
-})
+const MealSchema = new mongoose.Schema({
+  idMeal: String,
+  strMeal: String,
+  strCategory: String,
+  strArea: String,
+  strInstructions: String,
+  strMealThumb: String,
+  strTags: String,
+  strYoutube: String,
+  strIngredients: [String],
+  strMeasures: [String],
+});
 //Making Data Model
 //Used to interact with the database
 //Storing documents in "MyMovies, movieSchema"
-const movieModel = new mongoose.model('MyMovies', movieSchema);
+module.exports = mongoose.model('Meal', MealSchema);
+
 
 app.get('/api/movies', async(req, res) => {
     const movies = await movieModel.find({});
