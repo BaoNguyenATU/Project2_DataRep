@@ -60,7 +60,7 @@ const AddMeals = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>ID: </label>
-          <input type="text" className="form-control" value={idMeal} onChange={(e) => setIdMeal(e.target.value)} />
+          <input type="number" className="form-control" value={idMeal} onChange={(e) => setIdMeal(e.target.value)} />
         </div>
         <div className="form-group">
           <label>Meal Name: </label>
