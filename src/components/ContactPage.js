@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import NavigationBar from "./NavigationBar";
 
 const ContactPage = () => {
     <div>
