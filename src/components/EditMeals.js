@@ -4,10 +4,16 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const EditMeals = () => {
     const { id } = useParams();
-    const [name, setName] = useState('');
-    const [duration, setDuration] = useState('');
-    const [picture, setPicture] = useState('');
-    const navigate = useNavigate();
+    const [idMeal, setIdMeal] = useState('');
+    const [strMeal, setStrMeal] = useState('');
+    const [strCategory, setStrCategory] = useState('');
+    const [strArea, setStrArea] = useState('');
+    const [strInstructions, setStrInstructions] = useState('');
+    const [strMealThumb, setStrMealThumb] = useState('');
+    const [strTags, setStrTags] = useState('');
+    const [strYoutube, setStrYoutube] = useState('');
+    const [strIngredients, setStrIngredients] = useState(['']);
+    const [strMeasures, setStrMeasures] = useState(['']);
 
     useEffect(() => {
         axios.get('http://localhost:4000/api/movie/' + id)
