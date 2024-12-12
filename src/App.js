@@ -22,9 +22,9 @@ function App() {
       <NavigationBar />
       <Routes>
         <Route path="/" element={<ContactPage />} />
-        <Route path="/read" element={<MainPage />} />
-        <Route path="/create" element={<AddMeals />} />
-        <Route path='/edit/:id' element={<EditMeals />} />
+        <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/addmeals" element={<AddMeals />} />
+        <Route path='/editmeals/:id' element={<EditMeals />} />
       </Routes>
       <Footer />
     </Router>
