@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import NavigationBar from "./NavigationBar";
+import { useState } from "react";
 
 const ContactPage = () => {
     // State to manage forming inputs by user(s)
