@@ -10,6 +10,19 @@ const ContactPage = () => {
         <input type='email' id='email' pattern='...@gmailcom' size={30} required>Enter your email...</input>
         <input type='number' id='phone' pattern='          ' size={10}></input>
     </div>
+
+    // Handle input changes
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData({ ...formData, [id]: value });
+    };
+
+    // Handling submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Form Submitted", formData);
+        alert("Thank you for contacting us!");
+    };
 }
 
 export default ContactPage;

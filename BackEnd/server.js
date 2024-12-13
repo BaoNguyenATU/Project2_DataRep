@@ -8,7 +8,7 @@ const port = 4000;
 const cors = require('cors');
 app.use(cors());
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -42,37 +42,42 @@ const MealSchema = new mongoose.Schema({
 module.exports = mongoose.model('345457', mealSchema);
 //API endpoint
 //Retrieving all meals
-app.get('/api/meals', async(req, res) => {
-    const meals = await mealModel.find({});
-    res.status(200).json({meals})
+app.get('/api/meals', async (req, res) => {
+  const meals = await mealModel.find({});
+  res.status(200).json({ meals })
 });
 
-app.get('/api/meal/:id', async(req, res)=>{
+app.get('/api/meal/:id', async (req, res) => {
   const meal = await mealModel.findById(req.params.id);
   console.log(meal);
   res.send(meal);
 })
 //Deleting 
-app.delete('/api/meal/:id', async(req, res)=>{
+app.delete('/api/meal/:id', async (req, res) => {
   const meal = await mealModelModel.findByIdAndDelete(req.params.id);
   res.send(meal);
 })
 
-app.put('/api/meal/:id', async (req, res)=>{
-  const meal = await mealModel.findByIdAndUpdate(req.params.id, req.body, {new:true});
+app.put('/api/meal/:id', async (req, res) => {
+  const meal = await mealModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.send(meal);
 })
 //Listening to HTTPS request
-app.post('/api/meals', async (req, res)=>{
+app.post('/api/meals', async (req, res) => {
+  try {
+    const { idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5 } = req.body;
 
-  const { idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5 } = req.body;
- 
-  const newMeal = new mealModel({ idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5 });
-  await newMeal.save();
- 
-  res.status(201).json({ message: 'Meal created successfully', meal: newMeal });
-  })
+    const newMeal = new mealModel({ idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5 });
+
+    await newMeal.save();
+
+    res.status(201).json({ message: 'Meal created successfully', meal: newMeal });
+  } catch (error) {
+    console.error('Error saving meal:', error);
+    res.status(500).json({ error: 'Failed to save meal' });
+  }
+})
 
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
