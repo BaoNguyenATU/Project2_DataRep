@@ -9,10 +9,10 @@ const List = () => {
   const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
-    // Fetch meals from backend API
-    axios.get('http://localhost:4000/api/meals')
+    // Fetch meals from the external MealDB API
+    axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata')
       .then(response => {
-        setMeals(response.data.meals);
+        setMeals(response.data.meals || []); // Set meals from the response
         setLoading(false);  // Update loading state
       })
       .catch(err => {
@@ -23,7 +23,7 @@ const List = () => {
   }, []);
 
   const handleDelete = (id) => {
-    // Delete meal from database
+    // In your case, this might not be needed if you are using an external API, but leaving it here
     axios.delete(`http://localhost:4000/api/meal/${id}`)
       .then(response => {
         setMeals(meals.filter(meal => meal.idMeal !== id)); // Remove deleted meal from state
@@ -53,11 +53,17 @@ const List = () => {
   return (
     <Container>
       <Row>
-        {meals.map(meal => (
-          <Col key={meal.idMeal} md={4}>
-            <MealItem meal={meal} handleDelete={handleDelete} />
+        {meals && meals.length > 0 ? (
+          meals.map(meal => (
+            <Col key={meal.idMeal} md={4}>
+              <MealItem meal={meal} handleDelete={handleDelete} />
+            </Col>
+          ))
+        ) : (
+          <Col>
+            <div>No meals found.</div>
           </Col>
-        ))}
+        )}
       </Row>
     </Container>
   );

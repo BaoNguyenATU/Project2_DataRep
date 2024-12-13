@@ -15,9 +15,8 @@ const NavigationBar = (theme, toggleTheme) => {
           <Nav.Link href="/mainpage">Main</Nav.Link>
           <Nav.Link href='/editmeals'>Edit</Nav.Link>
           <Nav.Link href='/contactpage'>Contacts</Nav.Link>
-          <Nav.Link href='/mealitem'>Meals</Nav.Link>
           <Nav.Link href='/list'>List</Nav.Link>
-          
+
         </Nav>
       </Container>
     </Navbar>
@@ -26,5 +25,8 @@ const NavigationBar = (theme, toggleTheme) => {
 /**<button onClick={toggleTheme} className="btn btn-secondary">
             {theme === 'light' ? 'Dark Mode' : 'Dark/Light'}
           </button>
+
+                    <Nav.Link href='/mealitem'>Meals</Nav.Link>
+
  */
 export default NavigationBar;

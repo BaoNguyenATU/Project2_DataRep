@@ -1,19 +1,22 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
+import { Card, Button } from 'react-bootstrap';
 
-const MealItem = ({ meal }) => {
+const MealItem = ({ meal, handleDelete }) => {
   return (
-    <div className="col-md-4">
-      <Card>
-        <Card.Header>{meal.strMeal}</Card.Header>
-        <Card.Body>
-          <img src={meal.strMealThumb} alt={meal.strMeal} className="card-img-top" />
-          <p>{meal.strCategory} - {meal.strArea}</p>
-          <p>{meal.strInstructions}</p>
-          <a href={meal.strYoutube} target="_blank" rel="noopener noreferrer">Watch Video</a>
-        </Card.Body>
-      </Card>
-    </div>
+    <Card>
+      <Card.Img variant="top" src={meal.strMealThumb} alt={meal.strMeal} />
+      <Card.Body>
+        <Card.Title>{meal.strMeal}</Card.Title>
+        <Card.Text>
+          <strong>Category:</strong> {meal.strCategory} <br />
+          <strong>Area:</strong> {meal.strArea} <br />
+          <strong>Instructions:</strong> {meal.strInstructions}
+        </Card.Text>
+        <Button variant="danger" onClick={() => handleDelete(meal.idMeal)}>
+          Delete
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 
