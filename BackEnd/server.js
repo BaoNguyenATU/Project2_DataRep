@@ -43,9 +43,15 @@ module.exports = mongoose.model('345457', mealSchema);
 //API endpoint
 //Retrieving all meals
 app.get('/api/meals', async (req, res) => {
-  const meals = await mealModel.find({});
-  res.status(200).json({ meals })
+  try {
+      const meals = await mealModel.find({}); // Fetch all meals from the database
+      res.status(200).json({ meals }); // Return meals in a JSON response
+  } catch (error) {
+      console.error('Error fetching meals:', error); // Log errors
+      res.status(500).send('Server Error'); // Send an error response
+  }
 });
+
 
 app.get('/api/meal/:id', async (req, res) => {
   const meal = await mealModel.findById(req.params.id);
