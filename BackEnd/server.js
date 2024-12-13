@@ -1,4 +1,6 @@
+//ipmorting libs
 const express = require('express');
+//Initialize Express app
 const app = express();
 /**Server running on port 4000*/
 const port = 4000;
@@ -17,9 +19,11 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//importing mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://Admin:Admin@cluster0.s3fkf.mongodb.net/DB11');
 
+//Defining Meal schema based on API structure
 const MealSchema = new mongoose.Schema({
   idMeal: String,
   strMeal: String,
@@ -34,52 +38,41 @@ const MealSchema = new mongoose.Schema({
 });
 //Making Data Model
 //Used to interact with the database
-//Storing documents in "MyMovies, movieSchema"
-module.exports = mongoose.model('Meal', MealSchema);
-
-
-app.get('/api/movies', async(req, res) => {
-    const movies = await movieModel.find({});
-    res.status(200).json({movies})
+//Storing documents in "Meal, mealSchema"
+module.exports = mongoose.model('345457', mealSchema);
+//API endpoint
+//Retrieving all meals
+app.get('/api/meals', async(req, res) => {
+    const meals = await mealModel.find({});
+    res.status(200).json({meals})
 });
 
-app.get('/api/movies/:id', async(req, res)=>{
-  const movie = await movieModel.findById(req.params.id);
-  console.log(movie);
-  res.send(movie);
+app.get('/api/meal/:id', async(req, res)=>{
+  const meal = await mealModel.findById(req.params.id);
+  console.log(meal);
+  res.send(meal);
+})
+//Deleting 
+app.delete('/api/meal/:id', async(req, res)=>{
+  const meal = await mealModelModel.findByIdAndDelete(req.params.id);
+  res.send(meal);
+})
+
+app.put('/api/meal/:id', async (req, res)=>{
+  const meal = await mealModel.findByIdAndUpdate(req.params.id, req.body, {new:true});
+  res.send(meal);
 })
 //Listening to HTTPS request
-app.post('/api/movies', async (req, res)=>{
+app.post('/api/meals', async (req, res)=>{
 
-  const { title, year, poster } = req.body;
+  const { idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5 } = req.body;
  
-  const newMovie = new movieModel({ title, year, poster });
-  await newMovie.save();
+  const newMeal = new mealModel({ idMeal, strMeal, strCategory, strArea, strInstructions, strMealThumb, strTags, strYoutube, strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5 });
+  await newMeal.save();
  
-  res.status(201).json({ message: 'Movie created successfully', movie: newMovie });
+  res.status(201).json({ message: 'Meal created successfully', meal: newMeal });
   })
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-/**{
-          "Title": "Avengers: Infinity War (server)",
-          "Year": "2018",
-          "imdbID": "tt4154756",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-        },
-        {
-          "Title": "Captain America: Civil War (server)",
-          "Year": "2016",
-          "imdbID": "tt3498820",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-        },
-        {
-          "Title": "World War Z (server)",
-          "Year": "2013",
-          "imdbID": "tt0816711",
-          "Type": "movie",
-          "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-        } */
