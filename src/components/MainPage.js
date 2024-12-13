@@ -46,6 +46,9 @@ const MainPage = () => {
     return (
         <div className="container"> {/* Bootstrap container for layout */}
             <div className="row"> {/* Bootstrap row for grid layout */}
+                <h1>WELCOME TO SEVENTH HEAVEN</h1>
+                <p>Browse countless recipes from all over the globe. </p>
+                <p>You can also create your own recipe to see</p>
                 {meals && meals.length > 0 ? (
                     meals.map((meal) => (
                         // Pass each meal as a prop to the MealItem component
