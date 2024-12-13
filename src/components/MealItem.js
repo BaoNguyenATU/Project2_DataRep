@@ -1,58 +1,29 @@
-import React from "react";
-import { Card, Button } from "react-bootstrap"; // Importing components from react-bootstrap
-import { Link } from "react-router-dom"; // To enable navigation between routes
-import axios from "axios"; // For making HTTP requests
+import React from 'react';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
-const MealItem = (props) => {
-    // Fallback check: Ensure the meal prop is passed and not undefined
-    if (!props.meal) {
-        return <div>Loading...</div>; // Display a loading message if meal data is not yet available
-    }
+const MealItem = ({ meal, handleDelete }) => {
+  // If meal data is undefined, render a loading message
+  if (!meal) {
+    return <div>Loading...</div>;
+  }
 
-    // Handle deleting a meal from the database
-    const handleDelete = async (e) => {
-        e.preventDefault(); // Prevents the default form submission behavior
-        try {
-            // Send a DELETE request to the API to remove the meal by its ID
-            await axios.delete(`http://localhost:4000/api/meal/${props.meal._id}`);
-            props.reloadMeals(); // Calls the reload function from the parent to refresh the meal list
-        } catch (error) {
-            console.error('Error deleting meal:', error); // Logs an error if the deletion fails
-        }
-    };
-
-    return (
-        <div className="col-md-4 mb-4"> {/* Wrapper for each meal item */}
-            <Card>
-                <Card.Header>{props.meal.strMeal}</Card.Header> {/* Meal title */}
-                <Card.Body>
-                    <img
-                        src={props.meal.strMealThumb} // Meal thumbnail
-                        alt={props.meal.strMeal} // Alt text for the image
-                        className="img-fluid mb-2" // Bootstrap class for responsive images
-                        style={{ height: '200px', objectFit: 'cover' }} // Style to maintain image aspect ratio
-                    />
-                    <p>
-                        <strong>Category:</strong> {props.meal.strCategory} {/* Meal category */}
-                    </p>
-                    <p>
-                        <strong>Area:</strong> {props.meal.strArea} {/* Meal area (cuisine type) */}
-                    </p>
-                    {/* Edit button navigates to an edit page with the meal ID */}
-                    <Link
-                        className="btn btn-primary me-2"
-                        to={`/edit/${props.meal._id}`}
-                    >
-                        Edit
-                    </Link>
-                    {/* Delete button calls handleDelete */}
-                    <Button variant="danger" onClick={handleDelete}>
-                        Delete
-                    </Button>
-                </Card.Body>
-            </Card>
-        </div>
-    );
+  return (
+    <div>
+      <Card>
+        <Card.Header>{meal.strMeal}</Card.Header>
+        <Card.Body>
+          <blockquote className="blockquote mb-0">
+            <img src={meal.strMealThumb} alt={meal.strMeal} className="card-img-top" />
+            <footer>{meal.strCategory} - {meal.strArea}</footer>
+          </blockquote>
+        </Card.Body>
+        <Link className="btn btn-primary" to={`/edit/${meal.idMeal}`}>Edit</Link>
+        <Button className="btn btn-danger" onClick={() => handleDelete(meal.idMeal)}>Delete</Button>
+      </Card>
+    </div>
+  );
 };
 
-export default MealItem; // Export the component so it can be used in other files
+export default MealItem;

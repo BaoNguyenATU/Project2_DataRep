@@ -26,9 +26,6 @@ const ContactPage = () => {
 
     return (
         <div>
-            {/* Include NavigationBar */}
-            <NavigationBar />
-
             {/* Contact Form */}
             <h1>CONTACT US</h1>
             <h3>Feel free to contact us through email at seventhheaven@gmail.com</h3>

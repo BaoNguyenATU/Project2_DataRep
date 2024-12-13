@@ -7,6 +7,8 @@ import NavigationBar from "./NavigationBar";
 const EditMeals = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [mealData, setMealData] = useState(null);
+
 
   const [strMeal, setStrMeal] = useState('');
   const [strCategory, setStrCategory] = useState('');

@@ -11,12 +11,12 @@ const NavigationBar = (theme, toggleTheme) => {
       <Container>
         <Navbar.Brand href="/">Navbar</Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/addmeals">Add</Nav.Link>
           <Nav.Link href="/mainpage">Main</Nav.Link>
           <Nav.Link href='/editmeals'>Edit</Nav.Link>
           <Nav.Link href='/contactpage'>Contacts</Nav.Link>
           <Nav.Link href='/mealitem'>Meals</Nav.Link>
+          <Nav.Link href='/list'>List</Nav.Link>
           
         </Nav>
       </Container>

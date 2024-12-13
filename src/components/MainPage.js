@@ -21,7 +21,7 @@ const MainPage = () => {
     // Function to reload meals after an operation (e.g., delete or update)
     const reloadMeals = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/meals'); // Re-fetch meals
+            const response = await axios.get('http://localhost:4000/api/meals'); // Re-fetch meals
             setMeals(response.data.meals); // Update state with the latest meals
         } catch (error) {
             console.error('Error reloading meals:', error); // Log errors

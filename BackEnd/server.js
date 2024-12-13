@@ -40,6 +40,8 @@ const MealSchema = new mongoose.Schema({
 //Used to interact with the database
 //Storing documents in "Meal, mealSchema"
 module.exports = mongoose.model('345457', mealSchema);
+const mealModel = mongoose.model('Meal', MealSchema);
+
 //API endpoint
 //Retrieving all meals
 app.get('/api/meals', async (req, res) => {
@@ -67,7 +69,7 @@ app.delete('/api/meal/:id', async (req, res) => {
 app.put('/api/meal/:id', async (req, res) => {
   const meal = await mealModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.send(meal);
-})
+});
 //Listening to HTTPS request
 app.post('/api/meals', async (req, res) => {
   try {

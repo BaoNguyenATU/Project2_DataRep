@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import MainPage from './components/MainPage';
 import EditMeals from './components/EditMeals';
 import MealItem from './components/MealItem';
+import List from './components/List';
 import { use } from 'react';
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/addmeals" element={<AddMeals />} />
           <Route path='/editmeals' element={<EditMeals />} />
           <Route path='/mealitem' element={<MealItem />} />
+          <Route path='/list' element={<List />} />
           
         </Routes>
         <Footer />
