@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+//Importing other pages
+import NavigationBar from "./NavigationBar";
 
 const EditMeals = () => {
   const { id } = useParams();

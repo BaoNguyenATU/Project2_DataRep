@@ -12,8 +12,9 @@ const NavigationBar = () => {
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/addmeals">Add</Nav.Link>
-          <Nav.Link href="/mainpage">MainPage</Nav.Link>
+          <Nav.Link href="/mainpage">Main</Nav.Link>
           <Nav.Link href='/editmeals'>Edit</Nav.Link>
+          <Nav.Link href='/contactpage'>Contacts</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

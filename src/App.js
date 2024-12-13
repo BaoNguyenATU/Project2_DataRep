@@ -11,7 +11,6 @@ import NavigationBar from './components/NavigationBar';
 import ContactPage from './components/ContactPage';
 import AddMeals from './components/AddMeals';
 import Footer from './components/Footer';
-import MainPageM from './components/MainPage';
 import MainPage from './components/MainPage';
 import EditMeals from './components/EditMeals';
 
@@ -21,7 +20,7 @@ function App() {
     <Router>
       <NavigationBar />
       <Routes>
-        <Route path="/" element={<ContactPage />} />
+        <Route path="/contactpage" element={<ContactPage />} />
         <Route path="/mainpage" element={<MainPage />} />
         <Route path="/addmeals" element={<AddMeals />} />
         <Route path='/editmeals/:id' element={<EditMeals />} />
